@@ -97,7 +97,7 @@
                             <images>
                                 <image>
                                     <alias>test_db</alias>
-                                    <name>centos/postgresql-96-centos7</name>
+                                    <name>postgres:9.6.23-alpine</name>
                                     <run>
                                         <ports>
                                             <port>${test-db.port}:5432</port>
@@ -105,7 +105,7 @@
                                         <env>
                                             <POSTGRESQL_USER>testuser</POSTGRESQL_USER>
                                             <POSTGRESQL_PASSWORD>test-password</POSTGRESQL_PASSWORD>
-                                            <POSTGRESQL_DATABASE>featureflags</POSTGRESQL_DATABASE>
+                                            <POSTGRESQL_DB>featureflags</POSTGRESQL_DB>
                                         </env>
                                         <wait>
                                             <log>Starting server...</log>
@@ -170,7 +170,7 @@
                             <images>
                                 <image>
                                     <alias>test_db</alias>
-                                    <name>centos/postgresql-96-centos7</name>
+                                    <name>postgres:9.6.23-alpine</name>
                                     <run>
                                         <network>
                                             <mode>custom</mode>
@@ -182,7 +182,7 @@
                                         <env>
                                             <POSTGRESQL_USER>testuser</POSTGRESQL_USER>
                                             <POSTGRESQL_PASSWORD>test-password</POSTGRESQL_PASSWORD>
-                                            <POSTGRESQL_DATABASE>featureflags</POSTGRESQL_DATABASE>
+                                            <POSTGRESQL_DB>featureflags</POSTGRESQL_DB>
                                         </env>
                                         <wait>
                                             <log>Starting server...</log>

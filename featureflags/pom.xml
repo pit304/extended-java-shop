@@ -108,7 +108,7 @@
                                             <POSTGRES_DB>featureflags</POSTGRES_DB>
                                         </env>
                                         <wait>
-                                            <log>Starting server...</log>
+                                            <log>PostgreSQL init process complete; ready for start up.</log>
                                             <time>20000</time>
                                         </wait>
                                     </run>
@@ -185,7 +185,7 @@
                                             <POSTGRES_DB>featureflags</POSTGRES_DB>
                                         </env>
                                         <wait>
-                                            <log>Starting server...</log>
+                                            <log>PostgreSQL init process complete; ready for start up.</log>
                                             <time>20000</time>
                                         </wait>
                                     </run>

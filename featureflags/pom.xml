@@ -103,9 +103,9 @@
                                             <port>${test-db.port}:5432</port>
                                         </ports>
                                         <env>
-                                            <POSTGRESQL_USER>testuser</POSTGRESQL_USER>
-                                            <POSTGRESQL_PASSWORD>test-password</POSTGRESQL_PASSWORD>
-                                            <POSTGRESQL_DB>featureflags</POSTGRESQL_DB>
+                                            <POSTGRES_USER>testuser</POSTGRES_USER>
+                                            <POSTGRES_PASSWORD>test-password</POSTGRES_PASSWORD>
+                                            <POSTGRES_DB>featureflags</POSTGRES_DB>
                                         </env>
                                         <wait>
                                             <log>Starting server...</log>
@@ -180,9 +180,9 @@
                                             <port>${test-db.port}:5432</port>
                                         </ports>
                                         <env>
-                                            <POSTGRESQL_USER>testuser</POSTGRESQL_USER>
-                                            <POSTGRESQL_PASSWORD>test-password</POSTGRESQL_PASSWORD>
-                                            <POSTGRESQL_DB>featureflags</POSTGRESQL_DB>
+                                            <POSTGRES_USER>testuser</POSTGRES_USER>
+                                            <POSTGRES_PASSWORD>test-password</POSTGRES_PASSWORD>
+                                            <POSTGRES_DB>featureflags</POSTGRES_DB>
                                         </env>
                                         <wait>
                                             <log>Starting server...</log>

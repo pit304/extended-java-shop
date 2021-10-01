@@ -1,7 +1,7 @@
 version: '2'
 services:
   shopfront:
-    image: quiram/shopfront
+    image: pit304/shopfront
     ports:
      - "8010:8010"
     depends_on:
@@ -15,19 +15,19 @@ services:
       - featureflags
       - external-adaptive-pricing
   productcatalogue:
-    image: quiram/productcatalogue
+    image: pit304/productcatalogue
     ports:
      - "8020:8020"
   stockmanager:
-    image: quiram/stockmanager
+    image: pit304/stockmanager
     ports:
      - "8030:8030"
   external-adaptive-pricing:
-    image: quiram/fake-adaptive-pricing
+    image: pit304/fake-adaptive-pricing
     ports:
      - "8050:8050"
   featureflags:
-    image: quiram/featureflags
+    image: pit304/featureflags
     ports:
      - "8040:8040"
     depends_on:
@@ -37,6 +37,6 @@ services:
     environment:
       - spring.profiles.active=test
   test-featureflags-db:
-    image: quiram/test-featureflags-db
+    image: pit304/test-featureflags-db
     ports:
      - "5432:5432"

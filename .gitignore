@@ -31,3 +31,8 @@ jenkins-kubernetes/kubernetes/kubeconfig
 
 # Private keys for AWS access
 *.pem
+
+# VSCode
+*.prefs
+*.classpath
+*.project

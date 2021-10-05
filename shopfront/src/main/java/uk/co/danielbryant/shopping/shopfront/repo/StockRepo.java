@@ -1,6 +1,7 @@
 package uk.co.danielbryant.shopping.shopfront.repo;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,9 @@ public class StockRepo {
         this.restTemplate = restTemplate;
     }
 
-    @HystrixCommand(fallbackMethod = "stocksNotFound") // Hystrix circuit breaker for fault-tolerance demo
+    @HystrixCommand(fallbackMethod = "stocksNotFound", commandProperties = {
+        @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+     }) // Hystrix circuit breaker for fault-tolerance demo
     public Map<String, StockDTO> getStockDTOs() {
         LOGGER.info("getStocksDTOs");
         ResponseEntity<List<StockDTO>> stockManagerResponse =

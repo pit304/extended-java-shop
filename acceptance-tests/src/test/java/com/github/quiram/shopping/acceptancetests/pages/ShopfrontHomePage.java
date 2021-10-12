@@ -26,7 +26,7 @@ public class ShopfrontHomePage extends PageObject {
     private List<WebElement> productPrices;
 
     public void load() {
-        with().pollInterval(5, SECONDS).await().atMost(3, MINUTES).until(this::pageIsReady);
+        with().pollInterval(5, SECONDS).await().atMost(5, MINUTES).until(this::pageIsReady);
     }
 
     private boolean pageIsReady() {

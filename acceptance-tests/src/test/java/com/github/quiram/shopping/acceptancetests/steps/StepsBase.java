@@ -25,6 +25,6 @@ abstract class StepsBase {
     }
 
     void waitForService(String serviceUrl) {
-        with().pollInterval(5, SECONDS).await().atMost(3, MINUTES).until(() -> serviceIsReady(serviceUrl));
+        with().pollInterval(5, SECONDS).await().atMost(5, MINUTES).until(() -> serviceIsReady(serviceUrl));
     }
 }

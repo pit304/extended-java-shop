@@ -3,9 +3,10 @@ package com.github.quiram.shopping.acceptancetests.steps;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static java.util.concurrent.TimeUnit.MINUTES;
 import static org.apache.http.HttpStatus.SC_OK;
-import static org.awaitility.Awaitility.await;
+import static org.awaitility.Awaitility.with;
 
 abstract class StepsBase {
     private static boolean serviceIsReady(String serviceUrl) {
@@ -24,6 +25,6 @@ abstract class StepsBase {
     }
 
     void waitForService(String serviceUrl) {
-        await().atMost(3, MINUTES).until(() -> serviceIsReady(serviceUrl));
+        with().pollInterval(5, SECONDS).await().atMost(3, MINUTES).until(() -> serviceIsReady(serviceUrl));
     }
 }

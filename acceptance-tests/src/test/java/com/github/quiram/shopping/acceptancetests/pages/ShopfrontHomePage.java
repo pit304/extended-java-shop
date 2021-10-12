@@ -2,6 +2,7 @@ package com.github.quiram.shopping.acceptancetests.pages;
 
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,8 +10,9 @@ import java.util.List;
 
 import static com.github.quiram.utils.Collections.map;
 import static java.lang.String.format;
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static java.util.concurrent.TimeUnit.MINUTES;
-import static org.awaitility.Awaitility.await;
+import static org.awaitility.Awaitility.with;
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleContains;
 
 public class ShopfrontHomePage extends PageObject {
@@ -24,7 +26,7 @@ public class ShopfrontHomePage extends PageObject {
     private List<WebElement> productPrices;
 
     public void load() {
-        await().atMost(3, MINUTES).until(this::pageIsReady);
+        with().pollInterval(5, SECONDS).await().atMost(3, MINUTES).until(this::pageIsReady);
     }
 
     private boolean pageIsReady() {
@@ -33,6 +35,9 @@ public class ShopfrontHomePage extends PageObject {
             waitFor(titleContains("Java Shopfront"));
             return true;
         } catch (TimeoutException | UnsupportedOperationException e) {
+            return false;
+        } catch (WebDriverException e) {
+            // Exception thrown by driver
             return false;
         }
     }

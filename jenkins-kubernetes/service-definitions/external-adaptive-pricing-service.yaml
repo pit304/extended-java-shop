@@ -15,12 +15,12 @@ spec:
     name: http
 
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: external-adaptive-pricing
   labels:
     app: external-adaptive-pricing
+  name: external-adaptive-pricing
 spec:
   replicas: 1
   selector:
@@ -32,13 +32,17 @@ spec:
         app: external-adaptive-pricing
     spec:
       containers:
-      - name: external-adaptive-pricing
-        image: quiram/external-adaptive-pricing
-        ports:
-        - containerPort: 8050
+      - image: pit304/external-adaptive-pricing
         livenessProbe:
+          failureThreshold: 3
           httpGet:
             path: /health
             port: 8050
+            scheme: HTTP
           initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
           timeoutSeconds: 1
+        name: external-adaptive-pricing
+        ports:
+        - containerPort: 8050

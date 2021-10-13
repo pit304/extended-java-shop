@@ -15,12 +15,12 @@ spec:
     name: jdbc-postgresql
 
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: featureflags-db
   labels:
     app: featureflags-db
+  name: featureflags-db
 spec:
   replicas: 1
   selector:
@@ -32,7 +32,7 @@ spec:
         app: featureflags-db
     spec:
       containers:
-      - name: featureflags-db
-        image: quiram/featureflags-db
+      - image: pit304/featureflags-db
+        name: featureflags-db
         ports:
         - containerPort: 5432

@@ -15,12 +15,12 @@ spec:
     name: http
 
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: featureflags
   labels:
     app: featureflags
+  name: featureflags
 spec:
   replicas: 1
   selector:
@@ -32,13 +32,17 @@ spec:
         app: featureflags
     spec:
       containers:
-      - name: featureflags
-        image: quiram/featureflags
-        ports:
-        - containerPort: 8040
+      - image: pit304/featureflags
         livenessProbe:
+          failureThreshold: 3
           httpGet:
             path: /health
             port: 8040
+            scheme: HTTP
           initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
           timeoutSeconds: 1
+        name: featureflags
+        ports:
+        - containerPort: 8040

@@ -33,6 +33,7 @@ jenkins-kubernetes/kubernetes/kubeconfig
 *.pem
 
 # VSCode
+.vscode/
 *.prefs
 *.classpath
 *.project

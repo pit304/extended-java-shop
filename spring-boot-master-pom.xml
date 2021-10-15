@@ -50,7 +50,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!-- Wait up to 2 minutes check if the app is up and running (120 attempts, separated by 1s)-->
-                    <maxAttempts>45</maxAttempts>
+                    <maxAttempts>120</maxAttempts>
                     <wait>1000</wait>
                 </configuration>
             </plugin>

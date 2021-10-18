@@ -23,6 +23,8 @@ metadata:
   name: external-adaptive-pricing
 spec:
   replicas: 1
+  strategy:
+    type: Recreate  
   selector:
     matchLabels:
       app: external-adaptive-pricing
@@ -33,6 +35,7 @@ spec:
     spec:
       containers:
       - image: pit304/external-adaptive-pricing
+        imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
           httpGet:

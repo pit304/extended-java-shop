@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -20,10 +23,13 @@ import java.util.Map;
 import static com.github.quiram.utils.Collections.toMap;
 import static java.util.Collections.emptyMap;
 
+import java.util.Collections;
+
 @Component
 public class StockRepo {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StockRepo.class);
+    private HttpEntity<String> entity;
 
     @Value("${stockManagerUri}")
     private String stockManagerUri;
@@ -39,6 +45,9 @@ public class StockRepo {
     public StockRepo(String stockManagerUri, RestTemplate restTemplate) {
         this.stockManagerUri = stockManagerUri;
         this.restTemplate = restTemplate;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        entity = new HttpEntity<>("body", headers);
     }
 
     @HystrixCommand(fallbackMethod = "stocksNotFound", commandProperties = {
@@ -48,7 +57,7 @@ public class StockRepo {
         LOGGER.info("getStocksDTOs");
         ResponseEntity<List<StockDTO>> stockManagerResponse =
                 restTemplate.exchange(stockManagerUri + "/stocks",
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<StockDTO>>() {
+                        HttpMethod.GET, entity, new ParameterizedTypeReference<List<StockDTO>>() {
                         });
         List<StockDTO> stockDTOs = stockManagerResponse.getBody();
 
